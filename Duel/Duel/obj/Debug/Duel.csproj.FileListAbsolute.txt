@@ -1,0 +1,6 @@
+c:\users\ahuck\documents\visual studio 2013\Projects\Duel\Duel\bin\Debug\Duel.exe.config
+c:\users\ahuck\documents\visual studio 2013\Projects\Duel\Duel\bin\Debug\Duel.exe
+c:\users\ahuck\documents\visual studio 2013\Projects\Duel\Duel\bin\Debug\Duel.pdb
+c:\users\ahuck\documents\visual studio 2013\Projects\Duel\Duel\obj\Debug\Duel.csprojResolveAssemblyReference.cache
+c:\users\ahuck\documents\visual studio 2013\Projects\Duel\Duel\obj\Debug\Duel.exe
+c:\users\ahuck\documents\visual studio 2013\Projects\Duel\Duel\obj\Debug\Duel.pdb
