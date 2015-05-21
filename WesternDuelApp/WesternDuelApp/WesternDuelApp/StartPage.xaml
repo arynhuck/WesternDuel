@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WesternDuelApp.StartPage">
+  <AbsoluteLayout>
+    <ScrollView>
+      <Label Text="Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+             Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+              Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+               Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+                Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+                 Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+                  Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+                   Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+                    Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+ Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+  Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+   Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+ Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+    Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n
+                     Welcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\nWelcome to Duel. Here you will fight to the death.\n" 
+             Font="Small" 
+             BackgroundColor="Black"
+             TextColor="White" 
+             VerticalOptions="End"
+             HorizontalOptions="Center"
+             x:Name="lblMessage"
+             AbsoluteLayout.LayoutBounds="0, 0, 1, 0.25"
+             AbsoluteLayout.LayoutFlags="All"/>
+    </ScrollView>
+
+    <Button Text="Info"
+            Font="Large"
+            BackgroundColor="Silver"
+            TextColor="Black"
+            x:Name="btnInfo"
+            AbsoluteLayout.LayoutBounds="0.5, 0.4, 0.15, 0.10"
+            AbsoluteLayout.LayoutFlags="All"
+            />
+   </AbsoluteLayout>
+  
+  
+</ContentPage>

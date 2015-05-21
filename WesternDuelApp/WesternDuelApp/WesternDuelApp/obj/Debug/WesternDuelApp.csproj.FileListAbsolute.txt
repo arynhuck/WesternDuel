@@ -1,0 +1,10 @@
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\bin\Debug\WesternDuelApp.dll
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\bin\Debug\WesternDuelApp.pdb
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\bin\Debug\Xamarin.Forms.Core.dll
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\bin\Debug\Xamarin.Forms.Xaml.dll
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\bin\Debug\Xamarin.Forms.Core.xml
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\obj\Debug\WesternDuelApp.csprojResolveAssemblyReference.cache
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\obj\Debug\StartPage.xaml.g.cs
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\obj\Debug\WesternDuelApp.dll
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\obj\Debug\WesternDuelApp.pdb
