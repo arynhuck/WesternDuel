@@ -14,6 +14,7 @@ namespace WesternDuelApp
         private int lowDamage;
         private int highDamage;
         private bool allegiance; //with you, or against you.
+        private bool alive; //true=alive, false=dead
 
         public Opponent(int playerlvl, bool playerSide) //good = true, bad = false
         {
@@ -23,6 +24,7 @@ namespace WesternDuelApp
             this.lowDamage = 1 + (this.level / 3);
             this.highDamage = 3 + (this.level / 3);
             this.allegiance = FindAllegiance(this.type, playerSide);
+            this.alive = true;
         }
 
         private int LevelDiff(int playerlvl)
@@ -115,6 +117,12 @@ namespace WesternDuelApp
         public bool Allegiance
         {
             get { return allegiance; }
+        }
+
+        public bool Alive
+        {
+            get { return alive; }
+            set { alive = value; }
         }
 
     }

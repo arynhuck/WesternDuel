@@ -57,12 +57,7 @@ namespace WesternDuelApp
                 Text = "FIGHT",
                 IsVisible = false
             };
-            btnFight.Clicked += (o, e) =>
-            {
-                //FIGHT!
-                //call methods in Duel
 
-            };
 
             //format of btnWalk
             var btnWalk = new Button
@@ -81,10 +76,12 @@ namespace WesternDuelApp
                 Text = "YOU",
                 IsVisible = false
             };
-            btnPlayer.Clicked += (o, e) =>
+
+
+            var btnOkay = new Button
             {
-                //change text in lblMessage
-                lblMessage.Text = Program.generatePlayerInfoMessage(player);
+                Text = "OKAY",
+                IsVisible = false
             };
 
             //Click actions
@@ -107,13 +104,49 @@ namespace WesternDuelApp
 
             };
 
+            btnFight.Clicked += (o, e) =>
+            {
+                //FIGHT!
+                //call methods in Duel
+                //lblMessage.Text = Program.Fight(ref player, ref opponent);
+                if (Program.Fight(player, opponent))
+                    lblMessage.Text = "You won!";
+                else
+                    lblMessage.Text = "Well now... You're dead.";
+                    
+                btnOkay.IsVisible = true;
+                btnOpInfo.IsVisible = false;
+                btnFight.IsVisible = false;
+                btnWalk.IsVisible = false;
+                btnPlayer.IsVisible = false;
+            };
+
+            btnPlayer.Clicked += (o, e) =>
+            {
+                //change text in lblMessage
+                lblMessage.Text = Program.generatePlayerInfoMessage(player);
+            };
+
+            btnOkay.Clicked += (o, e) =>
+            {
+                if (player.Alive)
+                {
+                    btnContinue.IsVisible = true;
+                   
+                }
+                else
+                    lblMessage.Text = "That's it. It's over. You're dead.";
+
+                btnOkay.IsVisible = false;
+                
+            };
 
 
             absLayout.Children.Add(lblMessage);
 
             Content = new StackLayout
             {
-                Children = { absLayout, btnContinue, btnOpInfo, btnFight, btnWalk, btnPlayer }
+                Children = { absLayout, btnContinue, btnOpInfo, btnFight, btnWalk, btnPlayer, btnOkay }
             };
 
         }

@@ -15,6 +15,7 @@ namespace WesternDuelApp
         private int goodGuysKilled;
         private int badGuysKilled;
         private bool side; //true = good, false = bad
+        private bool alive; //true= alive, false = dead
 
         //constructor
         public Player()
@@ -26,6 +27,7 @@ namespace WesternDuelApp
             this.goodGuysKilled = 0;
             this.badGuysKilled = 0;
             this.side = true;
+            this.alive = true;
         }
 
         public void ChangeSide()
@@ -102,6 +104,12 @@ namespace WesternDuelApp
         {
             get { return side; }
             set { side = value; }
+        }
+
+        public bool Alive
+        {
+            get { return alive; }
+            set { alive = value; }
         }
 
     }
