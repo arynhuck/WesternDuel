@@ -5,12 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+
+
 namespace WesternDuelApp
 {
     class BasePage : ContentPage
     {
-        public BasePage()
+        //private Player player;
+
+        public BasePage(Player player)
         {
+             //player= new Player(); //this apparently kills it
+            
             Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 0);
             Title = "Duel";
 // var stLayout = new StackLayout();
@@ -66,6 +72,7 @@ namespace WesternDuelApp
             btnPlayer.Clicked += (o, e) =>
             {
                 //change text in lblMessage
+                lblMessage.Text = "\nLevel: " + player.Level + "\nHealth: " + player.Health + "\nDamage range: " + player.LowDamage + "-" + player.HighDamage + "\n";
 
             };
 

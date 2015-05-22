@@ -12,7 +12,7 @@ namespace WesternDuelApp
         public App()
         {
             // The root page of your application
-            MainPage = new BasePage();
+            MainPage = new BasePage(new Player());
             
         }
 
