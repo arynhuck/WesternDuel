@@ -99,6 +99,7 @@ namespace WesternDuelApp
         {
             string message = "";
             message = "Level: " + player.Level + "\nHealth: " + player.Health + "\nDamage range: " + player.LowDamage + "-" + player.HighDamage + "\n";
+            message += "Side: " + player.Side + "\nGood guys killed: " + player.GoodGuysKilled + "\nBad guys killed: " + player.BadGuysKilled;
             return message;
         }
 

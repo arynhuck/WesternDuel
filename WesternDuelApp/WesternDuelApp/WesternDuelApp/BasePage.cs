@@ -33,7 +33,7 @@ namespace WesternDuelApp
             var lblMessage = new Label
             {
                 Text = "Welcome to Duel. Here you will fight to the death.",
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
                 HeightRequest = 200,
                 VerticalOptions = LayoutOptions.End
             };
@@ -41,7 +41,8 @@ namespace WesternDuelApp
             //format of btnContinue
             var btnContinue = new Button
             {
-                Text = "CONTINUE ON..."
+                Text = "CONTINUE ON...",
+                IsVisible = false
             };
 
             //format of btnOpInfo
@@ -66,19 +67,27 @@ namespace WesternDuelApp
                 IsVisible = false
             };
            
-
+            //format of btnPlayer
             var btnPlayer = new Button
             {
                 Text = "YOU",
                 IsVisible = false
             };
 
-
+            //format of btnOkay
             var btnOkay = new Button
             {
                 Text = "OKAY",
                 IsVisible = false
             };
+
+            //format of btnNewGame
+            var btnNewGame = new Button
+            {
+                Text = "NEW GAME",
+                IsVisible = true
+            };
+
 
             //Click actions
             btnContinue.Clicked += (o, e) =>
@@ -154,10 +163,25 @@ namespace WesternDuelApp
                     lblMessage.Text = "You wander off...";
                 }
                 else
+                {
                     lblMessage.Text = "That's it. It's over. You're dead.";
+                    btnNewGame.IsVisible = true;
+                }
 
                 btnOkay.IsVisible = false;
                 
+            };
+
+            btnNewGame.Clicked += (o, e) =>
+            {
+                player = new Player();
+                opponent = new Opponent(player.Level, player.Side);
+                lblMessage.Text = Program.generateNewTownMessage(opponent.Type);
+                btnOpInfo.IsVisible = true;
+                btnFight.IsVisible = true;
+                btnWalk.IsVisible = true;
+                btnPlayer.IsVisible = true;
+                btnNewGame.IsVisible = false;
             };
 
 
@@ -165,7 +189,7 @@ namespace WesternDuelApp
 
             Content = new StackLayout
             {
-                Children = { absLayout, btnContinue, btnOpInfo, btnFight, btnWalk, btnPlayer, btnOkay }
+                Children = { absLayout, btnNewGame, btnContinue, btnOpInfo, btnFight, btnWalk, btnPlayer, btnOkay }
             };
 
         }
