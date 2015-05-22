@@ -11,11 +11,11 @@ namespace WesternDuelApp
 {
     class BasePage : ContentPage
     {
-        //private Player player;
+        private Player player;
 
-        public BasePage(Player player)
+        public BasePage()//Player player)
         {
-             //player= new Player(); //this apparently kills it
+             player= new Player();
             
             Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 0);
             Title = "Duel";
@@ -32,7 +32,7 @@ namespace WesternDuelApp
                 HeightRequest =200,
                 VerticalOptions= LayoutOptions.End
             };
-            lblMessage.SetBinding(AbsoluteLayout.LayoutBoundsProperty, "0, 0, 1, .45");
+            //lblMessage.SetBinding(AbsoluteLayout.LayoutBoundsProperty, "0, 0, 1, .45");
 
             var btnOpInfo = new Button
             {
@@ -73,9 +73,12 @@ namespace WesternDuelApp
             {
                 //change text in lblMessage
                 lblMessage.Text = "\nLevel: " + player.Level + "\nHealth: " + player.Health + "\nDamage range: " + player.LowDamage + "-" + player.HighDamage + "\n";
-
+                //lblMessage.SetBinding(Label.TextProperty, "Level");
+                //lblMessage.Text = player.createInfoMessage();
+                //lblMessage.Text = "Level is: " + player.Level;
             };
-
+            //lblMessage.BindingContext = player;
+            
             absLayout.Children.Add(lblMessage);
 
             Content = new StackLayout
