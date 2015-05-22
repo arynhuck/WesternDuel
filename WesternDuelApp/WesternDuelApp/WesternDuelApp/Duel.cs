@@ -19,7 +19,6 @@ namespace WesternDuelApp
         public static string generateNewTownMessage(string opType)
         {
             string message = "";
-            message = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
             message += "\nEntering town...";
             message += "\n" + opType + " has stopped you";
             return message;
@@ -82,7 +81,18 @@ namespace WesternDuelApp
 
         public static string generateWalkMessage(bool opAllegiance)
         {
-            return "";
+            string message = "";
+
+            if (opAllegiance)//true, they're with you.
+            {
+                message ="They nod as you pass by.";
+            }
+            else //not with you
+            {
+                message ="They whip out their gun. \n'Hold it right there!'";
+            }
+
+            return message;
         }
 
         public static string generatePlayerInfoMessage(Player player)

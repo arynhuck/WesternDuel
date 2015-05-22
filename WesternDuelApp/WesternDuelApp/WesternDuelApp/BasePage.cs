@@ -65,11 +65,7 @@ namespace WesternDuelApp
                 Text = "WALK",
                 IsVisible = false
             };
-            btnWalk.Clicked += (o, e) =>
-            {
-                //call methods in Duel
-
-            };
+           
 
             var btnPlayer = new Button
             {
@@ -121,6 +117,29 @@ namespace WesternDuelApp
                 btnPlayer.IsVisible = false;
             };
 
+            btnWalk.Clicked += (o, e) =>
+            {
+                //call methods in Duel
+                lblMessage.Text = Program.generateWalkMessage(opponent.Allegiance);
+
+                if (opponent.Allegiance)//with you
+                {
+                    //walk on man
+                    btnContinue.IsVisible = true;
+                    btnOpInfo.IsVisible = false;
+                    btnFight.IsVisible = false;
+                    btnWalk.IsVisible = false;
+                    btnPlayer.IsVisible = false;
+                }
+                else //FIGHT!!!
+                {
+                    btnOpInfo.IsVisible = false;
+                    btnFight.IsVisible = true; //still make user click it whahaha
+                    btnWalk.IsVisible = false;
+                    btnPlayer.IsVisible = false;
+                }
+            };
+
             btnPlayer.Clicked += (o, e) =>
             {
                 //change text in lblMessage
@@ -132,7 +151,7 @@ namespace WesternDuelApp
                 if (player.Alive)
                 {
                     btnContinue.IsVisible = true;
-                   
+                    lblMessage.Text = "You wander off...";
                 }
                 else
                     lblMessage.Text = "That's it. It's over. You're dead.";
