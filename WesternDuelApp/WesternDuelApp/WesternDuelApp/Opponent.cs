@@ -31,11 +31,14 @@ namespace WesternDuelApp
         {
             Random rnd = new Random();
             int diff = 0;
-
-            if (playerlvl <= 3)
-                diff = rnd.Next(-2, 1);
+            if (playerlvl == 1)
+                diff = 0;
+            else if (playerlvl == 2)
+                diff = rnd.Next(-1, 1);
+            else if (playerlvl <= 3)
+                diff = rnd.Next(-2, 2);
             else if (playerlvl <= 7)
-                diff = rnd.Next(-3, 2);
+                diff = rnd.Next(-3, 3);
             else
                 diff = rnd.Next(-4, 3);
             return diff;

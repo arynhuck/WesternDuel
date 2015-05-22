@@ -61,6 +61,27 @@ namespace WesternDuelApp
                   
                    // message += "\nOpponent " + opponent.Type + " killed!";
                     //message += "\nYou won!";
+
+                      if (opponent.Allegiance == true)//same side as player
+                        {
+                            if (player.Side == true)//good player killed good guy
+                                player.GoodGuysKilled += 1;
+                            else //bad player killed bad guy
+                                player.BadGuysKilled += 1;
+                        }
+                      else if (opponent.Allegiance == false)//opposite side as player
+                      {
+                          if (player.Side == true)//good player killed bad guy
+                              player.BadGuysKilled += 1;
+                          else //bad player killed good guy
+                              player.GoodGuysKilled += 1;
+                      }
+
+                    //player is still alive so we need to update sides, heal, and level-up
+                    player.ChangeSide(); //update sides
+                    player.Heal(); //need that full health if you want any hope of continuing.
+                    player.LevelUp();//sometimes you level up!
+
                 }
                 else
                 {
