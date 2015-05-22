@@ -15,44 +15,43 @@ namespace WesternDuelApp
 
         public BasePage()//Player player)
         {
-            Opponent opponent;
+            Opponent opponent = new Opponent(0, true); //will find a way to do without this
+            //currently need this so all buttons will be happy
             player = new Player();
-            
+
             Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 0);
             Title = "Duel";
-// var stLayout = new StackLayout();
-           var absLayout = new AbsoluteLayout{
-                BackgroundColor = Color.Black,
-                
-           };
-          // absLayout.SetBinding(AbsoluteLayout.LayoutBoundsProperty, "0, 0, 1, .45");
 
+            //format of absLayout, might get rid of...
+            var absLayout = new AbsoluteLayout
+            {
+                BackgroundColor = Color.Black,
+
+            };
+
+            //format of lblMessage
             var lblMessage = new Label
             {
                 Text = "Welcome to Duel. Here you will fight to the death.",
-                FontSize= Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                HeightRequest =200,
-                VerticalOptions= LayoutOptions.End
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                HeightRequest = 200,
+                VerticalOptions = LayoutOptions.End
             };
-            //lblMessage.SetBinding(AbsoluteLayout.LayoutBoundsProperty, "0, 0, 1, .45");
 
+            //format of btnContinue
             var btnContinue = new Button
             {
                 Text = "CONTINUE ON..."
             };
-          
-            
+
+            //format of btnOpInfo
             var btnOpInfo = new Button
             {
                 Text = "OPPONENT INFO",
                 IsVisible = false
             };
-            btnOpInfo.Clicked += (o, e) =>
-            {
-                //change message text
 
-            };
-
+            //format of btnFight
             var btnFight = new Button
             {
                 Text = "FIGHT",
@@ -65,6 +64,7 @@ namespace WesternDuelApp
 
             };
 
+            //format of btnWalk
             var btnWalk = new Button
             {
                 Text = "WALK",
@@ -84,12 +84,8 @@ namespace WesternDuelApp
             btnPlayer.Clicked += (o, e) =>
             {
                 //change text in lblMessage
-                lblMessage.Text = "\nLevel: " + player.Level + "\nHealth: " + player.Health + "\nDamage range: " + player.LowDamage + "-" + player.HighDamage + "\n";
-                //lblMessage.SetBinding(Label.TextProperty, "Level");
-                //lblMessage.Text = player.createInfoMessage();
-                //lblMessage.Text = "Level is: " + player.Level;
+                lblMessage.Text = Program.generatePlayerInfoMessage(player);
             };
-            //lblMessage.BindingContext = player;
 
             //Click actions
             btnContinue.Clicked += (o, e) =>
@@ -104,14 +100,20 @@ namespace WesternDuelApp
                 btnPlayer.IsVisible = true;
             };
 
+            btnOpInfo.Clicked += (o, e) =>
+            {
+                //change message text
+                lblMessage.Text = Program.generateOpponentInfoMessage(opponent);
+
+            };
+
 
 
             absLayout.Children.Add(lblMessage);
 
             Content = new StackLayout
             {
-                Children =
-                {absLayout, btnContinue, btnOpInfo, btnFight, btnWalk, btnPlayer }
+                Children = { absLayout, btnContinue, btnOpInfo, btnFight, btnWalk, btnPlayer }
             };
 
         }

@@ -25,6 +25,32 @@ namespace WesternDuelApp
             return message;
         }
 
+        public static string generateOpponentInfoMessage(Opponent op)
+        {
+            string message = "";
+            message = "They are a level " + op.Level + " " + op.Type + ".\n" + op.Health + " health.~~\n";
+
+            if (op.Allegiance)//true, they're with you.
+                message += "They wave in a friendly manner, they will not attack... unless you do...";
+            else //not with you
+                message += "They glare at you and reach for their gun...";
+
+            return message;
+        }
+
+        public static string generateFightMessage(Player player, Opponent opponent)
+        {
+
+        }
+
+
+        public static string generatePlayerInfoMessage (Player player)
+        {
+            string message="";
+            message = "Level: " + player.Level + "\nHealth: " + player.Health + "\nDamage range: " + player.LowDamage + "-" + player.HighDamage + "\n";
+            return message;
+        }
+
 
 
 
