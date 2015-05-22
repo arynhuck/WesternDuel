@@ -37,6 +37,8 @@
     <Compile Include="App.cs" />
     <Compile Include="BasePage.cs" />
     <Compile Include="Duel.cs" />
+    <Compile Include="Opponent.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
