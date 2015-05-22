@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Duel
+namespace WesternDuelApp
 {
     class Program
     {
-        private string message;
+        //private string message;
 
-        public string Message
-        { 
-            get { return message; }
-            set { message = value; }
+        //public string Message
+        //{ 
+        //    get { return message; }
+        //    set { message = value; }
+        //}
+
+        public static string generateNewTownMessage(string opType)
+        {
+            string message = "";
+            message = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+            message += "\nEntering town...";
+            message += "\n" + opType + " has stopped you";
+            return message;
         }
-
-
 
 
 

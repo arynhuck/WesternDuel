@@ -15,7 +15,8 @@ namespace WesternDuelApp
 
         public BasePage()//Player player)
         {
-             player= new Player();
+            Opponent opponent;
+            player = new Player();
             
             Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 0);
             Title = "Duel";
@@ -29,14 +30,22 @@ namespace WesternDuelApp
             var lblMessage = new Label
             {
                 Text = "Welcome to Duel. Here you will fight to the death.",
+                FontSize= Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                 HeightRequest =200,
                 VerticalOptions= LayoutOptions.End
             };
             //lblMessage.SetBinding(AbsoluteLayout.LayoutBoundsProperty, "0, 0, 1, .45");
 
+            var btnContinue = new Button
+            {
+                Text = "CONTINUE ON..."
+            };
+          
+            
             var btnOpInfo = new Button
             {
-                Text = "INFO"
+                Text = "OPPONENT INFO",
+                IsVisible = false
             };
             btnOpInfo.Clicked += (o, e) =>
             {
@@ -46,7 +55,8 @@ namespace WesternDuelApp
 
             var btnFight = new Button
             {
-                Text = "FIGHT"
+                Text = "FIGHT",
+                IsVisible = false
             };
             btnFight.Clicked += (o, e) =>
             {
@@ -57,7 +67,8 @@ namespace WesternDuelApp
 
             var btnWalk = new Button
             {
-                Text = "WALK"
+                Text = "WALK",
+                IsVisible = false
             };
             btnWalk.Clicked += (o, e) =>
             {
@@ -67,7 +78,8 @@ namespace WesternDuelApp
 
             var btnPlayer = new Button
             {
-                Text = "YOU"
+                Text = "YOU",
+                IsVisible = false
             };
             btnPlayer.Clicked += (o, e) =>
             {
@@ -78,13 +90,28 @@ namespace WesternDuelApp
                 //lblMessage.Text = "Level is: " + player.Level;
             };
             //lblMessage.BindingContext = player;
-            
+
+            //Click actions
+            btnContinue.Clicked += (o, e) =>
+            {
+                //change message text
+                opponent = new Opponent(player.Level, player.Side);
+                lblMessage.Text = Program.generateNewTownMessage(opponent.Type);
+                btnContinue.IsVisible = false;
+                btnOpInfo.IsVisible = true;
+                btnFight.IsVisible = true;
+                btnWalk.IsVisible = true;
+                btnPlayer.IsVisible = true;
+            };
+
+
+
             absLayout.Children.Add(lblMessage);
 
             Content = new StackLayout
             {
                 Children =
-                {absLayout, btnOpInfo, btnFight, btnWalk, btnPlayer }
+                {absLayout, btnContinue, btnOpInfo, btnFight, btnWalk, btnPlayer }
             };
 
         }
