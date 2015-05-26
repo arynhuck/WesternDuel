@@ -186,7 +186,7 @@ namespace WesternDuelApp
 
             Content = new StackLayout
             {
-                Children = { absLayout, btnNewGame, btnContinue, btnOpInfo, btnFight, btnWalk, btnPlayer, btnOkay }
+                Children = { absLayout, btnNewGame, btnContinue, btnFight, btnWalk, btnOpInfo, btnPlayer, btnOkay }
             };
 
         }

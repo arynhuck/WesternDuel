@@ -16,13 +16,38 @@ namespace WesternDuelApp
         //    set { message = value; }
         //}
 
+        //Private methods
+
+        private static void OpponentIsDead(Player player, Opponent opponent)
+        {
+            if (opponent.Allegiance == true)//same side as player
+            {
+                if (player.Side == true)//good player killed good guy
+                    player.GoodGuysKilled += 1;
+                else //bad player killed bad guy
+                    player.BadGuysKilled += 1;
+            }
+            else if (opponent.Allegiance == false)//opposite side as player
+            {
+                if (player.Side == true)//good player killed bad guy
+                    player.BadGuysKilled += 1;
+                else //bad player killed good guy
+                    player.GoodGuysKilled += 1;
+            }
+
+            //player is still alive so we need to update sides, heal, and level-up
+            player.ChangeSide(); //update sides
+            player.Heal(); //need that full health if you want any hope of continuing.
+            player.LevelUp();//sometimes you level up!
+        }
+
         //Public methods
 
         public static string generateNewTownMessage(string opType)
         {
             string message = "";
 
-            message += "\nEntering town...";
+            message += "Entering town...";
             message += "\n" + opType + " has stopped you";
 
             return message;
@@ -30,7 +55,7 @@ namespace WesternDuelApp
 
         public static string generateOpponentInfoMessage(Opponent op)
         {
-            string message = "They are a level " + op.Level + " " + op.Type + ".\n" + op.Health + " health.~~\n";
+            string message = "They are a level " + op.Level + " " + op.Type + ".\n" + op.Health + " health.\n";
 
             if (op.Allegiance)//true, they're with you.
                 message += "They wave in a friendly manner, they will not attack... unless you do...";
@@ -57,11 +82,6 @@ namespace WesternDuelApp
                     //DEAD
                     opponent.Alive = false;
                     OpponentIsDead(player, opponent);
-                     
-                    //player is still alive so we need to update sides, heal, and level-up
-                    player.ChangeSide(); //update sides
-                    player.Heal(); //need that full health if you want any hope of continuing.
-                    player.LevelUp();//sometimes you level up!
                 }
                 else
                 {
@@ -77,26 +97,6 @@ namespace WesternDuelApp
 
             return player.Alive;
         }
-
-        private static void OpponentIsDead(Player player, Opponent opponent)
-        {
-            if (opponent.Allegiance == true)//same side as player
-            {
-                if (player.Side == true)//good player killed good guy
-                    player.GoodGuysKilled += 1;
-                else //bad player killed bad guy
-                    player.BadGuysKilled += 1;
-            }
-            else if (opponent.Allegiance == false)//opposite side as player
-            {
-                if (player.Side == true)//good player killed bad guy
-                    player.BadGuysKilled += 1;
-                else //bad player killed good guy
-                    player.GoodGuysKilled += 1;
-            }
-        }
-
-
 
         public static string generateWalkMessage(bool opAllegiance)
         {

@@ -97,16 +97,16 @@ namespace WesternDuelApp
 
             switch(numType)
             {
-                case 1:
+                case (int)OpponentTypes.Sherif:
                     thetype = "SHERIF";
                     break;
-                case 2:
+                case (int)OpponentTypes.Bandit:
                     thetype = "BANDIT";
                     break;
-                case 3:
+                case (int)OpponentTypes.Villager:
                     thetype = "VILLAGER";
                     break;
-                case 4:
+                case (int)OpponentTypes.Outlaw:
                     thetype = "OUTLAW";
                     break;
                 default:
@@ -115,6 +115,11 @@ namespace WesternDuelApp
             }
 
             return thetype;
+        }
+
+        private enum OpponentTypes
+        {
+            Sherif = 1, Bandit, Villager, Outlaw
         }
 
         private bool FindAllegiance(string opType, bool playerSide)
