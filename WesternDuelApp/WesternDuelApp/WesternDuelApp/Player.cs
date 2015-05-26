@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WesternDuelApp
 {
-    class Player
+    public class Player
     {
         //Member variables
         private int _level;

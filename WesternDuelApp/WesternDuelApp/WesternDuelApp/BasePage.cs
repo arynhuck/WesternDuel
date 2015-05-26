@@ -153,7 +153,10 @@ namespace WesternDuelApp
             btnPlayer.Clicked += (o, e) =>
             {
                 //change text in lblMessage
-                lblMessage.Text = Duel.GeneratePlayerInfoMessage(player);
+                //lblMessage.Text = Duel.GeneratePlayerInfoMessage(player);
+            
+                //display PlayerInfoPage
+                Navigation.PushAsync(new PlayerInfoPage(player));
             };
 
             btnOkay.Clicked += (o, e) =>
