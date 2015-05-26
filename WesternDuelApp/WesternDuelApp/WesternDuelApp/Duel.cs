@@ -43,7 +43,7 @@ namespace WesternDuelApp
 
         //Public methods
 
-        public static string generateNewTownMessage(string opType)
+        public static string GenerateNewTownMessage(string opType)
         {
             string message = "";
 
@@ -53,14 +53,16 @@ namespace WesternDuelApp
             return message;
         }
 
-        public static string generateOpponentInfoMessage(Opponent op)
+        public static string GenerateOpponentInfoMessage(Opponent op)
         {
-            string message = "They are a level " + op.Level + " " + op.Type + ".\n" + op.Health + " health.\n";
+            string message = "";//"They are a level " + op.Level + " " + op.Type + ".\n" + op.Health + " health.\n";
+
+            message = "Level " + op.Level + " " + op.Type + "\nHealth: " + op.Health;
 
             if (op.Allegiance)//true, they're with you.
-                message += "They wave in a friendly manner, they will not attack... unless you do...";
+                message += "\n\nThey wave in a friendly manner, they will not attack... unless you do...";
             else //not with you
-                message += "They glare at you and reach for their gun...";
+                message += "\n\nThey glare at you and reach for their gun...";
 
             return message;
         }
@@ -98,7 +100,7 @@ namespace WesternDuelApp
             return player.Alive;
         }
 
-        public static string generateWalkMessage(bool opAllegiance)
+        public static string GenerateWalkMessage(bool opAllegiance)
         {
             string message = "";
 
@@ -114,7 +116,7 @@ namespace WesternDuelApp
             return message;
         }
 
-        public static string generatePlayerInfoMessage(Player player)
+        public static string GeneratePlayerInfoMessage(Player player)
         {
             string message = "";
 

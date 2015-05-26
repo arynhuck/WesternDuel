@@ -20,7 +20,7 @@ namespace WesternDuelApp
             player = new Player();
 
             Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 0);
-            Title = "Duel";
+            Title = "DUEL";
 
             //format of absLayout, might get rid of...
             var absLayout = new AbsoluteLayout
@@ -93,7 +93,7 @@ namespace WesternDuelApp
                 //change message text
                 opponent = new Opponent(player.Level, player.Side);
 
-                lblMessage.Text = Duel.generateNewTownMessage(opponent.Type);
+                lblMessage.Text = Duel.GenerateNewTownMessage(opponent.Type);
                 btnContinue.IsVisible = false;
                 btnOpInfo.IsVisible = true;
                 btnFight.IsVisible = true;
@@ -104,7 +104,11 @@ namespace WesternDuelApp
             btnOpInfo.Clicked += (o, e) =>
             {
                 //change message text
-                lblMessage.Text = Duel.generateOpponentInfoMessage(opponent);
+                //lblMessage.Text = Duel.GenerateOpponentInfoMessage(opponent);
+
+                //Brings up Opponent Info Page
+                Navigation.PushAsync(new OpponentInfoPage(opponent));
+
             };
 
             btnFight.Clicked += (o, e) =>
@@ -126,7 +130,7 @@ namespace WesternDuelApp
             btnWalk.Clicked += (o, e) =>
             {
                 //call methods in Duel
-                lblMessage.Text = Duel.generateWalkMessage(opponent.Allegiance);
+                lblMessage.Text = Duel.GenerateWalkMessage(opponent.Allegiance);
 
                 if (opponent.Allegiance)//with you
                 {
@@ -149,7 +153,7 @@ namespace WesternDuelApp
             btnPlayer.Clicked += (o, e) =>
             {
                 //change text in lblMessage
-                lblMessage.Text = Duel.generatePlayerInfoMessage(player);
+                lblMessage.Text = Duel.GeneratePlayerInfoMessage(player);
             };
 
             btnOkay.Clicked += (o, e) =>
@@ -173,7 +177,7 @@ namespace WesternDuelApp
                 player = new Player();
                 opponent = new Opponent(player.Level, player.Side);
 
-                lblMessage.Text = Duel.generateNewTownMessage(opponent.Type);
+                lblMessage.Text = Duel.GenerateNewTownMessage(opponent.Type);
                 btnOpInfo.IsVisible = true;
                 btnFight.IsVisible = true;
                 btnWalk.IsVisible = true;

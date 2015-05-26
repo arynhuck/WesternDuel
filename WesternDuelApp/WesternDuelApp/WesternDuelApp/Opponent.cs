@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WesternDuelApp
 {
-    class Opponent
+    public class Opponent
     {
         //Member variables
         private int _level;
@@ -16,6 +16,7 @@ namespace WesternDuelApp
         private int _highDamage;
         private bool _allegiance; //with you, or against you.
         private bool _alive; //true=alive, false=dead
+       // private bool _side; //true=good, false=bad
 
         //Properties
         public int Level
@@ -55,6 +56,19 @@ namespace WesternDuelApp
             set { _alive = value; }
         }
 
+        //public bool Side
+        //{
+        //    get { return _side; }
+        //    set
+        //    {
+        //        //The type determines the side
+        //        if (_type.Equals("SHERIF") || _type.Equals("VILLAGER"))
+        //            _side = true;
+        //        else if (_type.Equals("BANDIT") || _type.Equals("OUTLAW"))
+        //            _side = false;
+        //    }
+        //}
+
         //Constructor
         public Opponent(int playerlvl, bool playerSide) //good = true, bad = false
         {
@@ -65,6 +79,7 @@ namespace WesternDuelApp
             this._highDamage = 3 + (this._level / 3);
             this._allegiance = FindAllegiance(this._type, playerSide);
             this._alive = true;
+            //this._side = Side;
         }
 
         //Private methods
