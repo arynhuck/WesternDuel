@@ -8,40 +8,83 @@ namespace WesternDuelApp
 {
     class Opponent
     {
-       private int level;
-        private string type;
-        private int health;
-        private int lowDamage;
-        private int highDamage;
-        private bool allegiance; //with you, or against you.
-        private bool alive; //true=alive, false=dead
+        //Member variables
+        private int _level;
+        private string _type;
+        private int _health;
+        private int _lowDamage;
+        private int _highDamage;
+        private bool _allegiance; //with you, or against you.
+        private bool _alive; //true=alive, false=dead
 
-        public Opponent(int playerlvl, bool playerSide) //good = true, bad = false
+        //Properties
+        public int Level
         {
-            this.level = playerlvl + LevelDiff(playerlvl);
-            this.type = GenerateType();
-            this.health = 20 + (this.level * 2);
-            this.lowDamage = 1 + (this.level / 3);
-            this.highDamage = 3 + (this.level / 3);
-            this.allegiance = FindAllegiance(this.type, playerSide);
-            this.alive = true;
+            get { return _level; }
         }
 
-        private int LevelDiff(int playerlvl)
+        public string Type
+        {
+            get { return _type; }
+        }
+
+        public int Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
+
+        public int LowDamage
+        {
+            get { return _lowDamage; }
+        }
+
+        public int HighDamage
+        {
+            get { return _highDamage; }
+        }
+
+        public bool Allegiance
+        {
+            get { return _allegiance; }
+        }
+
+        public bool Alive
+        {
+            get { return _alive; }
+            set { _alive = value; }
+        }
+
+        //Constructor
+        public Opponent(int playerlvl, bool playerSide) //good = true, bad = false
+        {
+            this._level = playerlvl + GetLevelDifference(playerlvl);
+            this._type = GenerateType();
+            this._health = 20 + (this._level * 2);
+            this._lowDamage = 1 + (this._level / 3);
+            this._highDamage = 3 + (this._level / 3);
+            this._allegiance = FindAllegiance(this._type, playerSide);
+            this._alive = true;
+        }
+
+        //Private methods
+        private int GetLevelDifference(int playerlvl)
         {
             Random rnd = new Random();
-            int diff = 0;
+            int difference = 0;
+
             if (playerlvl == 1)
-                diff = 0;
+                difference = 0;
             else if (playerlvl == 2)
-                diff = rnd.Next(-1, 1);
+                difference = rnd.Next(-1, 1);
             else if (playerlvl <= 3)
-                diff = rnd.Next(-2, 2);
+                difference = rnd.Next(-2, 2);
             else if (playerlvl <= 7)
-                diff = rnd.Next(-3, 3);
+                difference = rnd.Next(-3, 3);
             else
-                diff = rnd.Next(-4, 3);
-            return diff;
+                difference = rnd.Next(-4, 3);
+
+            return difference;
         }
 
         private string GenerateType()
@@ -70,6 +113,7 @@ namespace WesternDuelApp
                     thetype = "CLONE";
                     break;
             }
+
             return thetype;
         }
 
@@ -90,43 +134,5 @@ namespace WesternDuelApp
                     return false;
             }
         }
-
-        public int Level
-        {
-            get { return level; }
-        }
-
-        public string Type
-        {
-            get { return type;}
-        }
-
-        public int Health
-        {
-            get { return health; }
-            set { health = value; }
-        }
-
-        public int LowDamage
-        {
-            get { return lowDamage; }
-        }
-
-        public int HighDamage
-        {
-            get { return highDamage; }
-        }
-
-        public bool Allegiance
-        {
-            get { return allegiance; }
-        }
-
-        public bool Alive
-        {
-            get { return alive; }
-            set { alive = value; }
-        }
-
     }
 }

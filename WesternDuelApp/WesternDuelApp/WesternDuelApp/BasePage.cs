@@ -26,7 +26,6 @@ namespace WesternDuelApp
             var absLayout = new AbsoluteLayout
             {
                 BackgroundColor = Color.Black,
-
             };
 
             //format of lblMessage
@@ -88,13 +87,13 @@ namespace WesternDuelApp
                 IsVisible = true
             };
 
-
             //Click actions
             btnContinue.Clicked += (o, e) =>
             {
                 //change message text
                 opponent = new Opponent(player.Level, player.Side);
-                lblMessage.Text = Program.generateNewTownMessage(opponent.Type);
+
+                lblMessage.Text = Duel.generateNewTownMessage(opponent.Type);
                 btnContinue.IsVisible = false;
                 btnOpInfo.IsVisible = true;
                 btnFight.IsVisible = true;
@@ -105,16 +104,14 @@ namespace WesternDuelApp
             btnOpInfo.Clicked += (o, e) =>
             {
                 //change message text
-                lblMessage.Text = Program.generateOpponentInfoMessage(opponent);
-
+                lblMessage.Text = Duel.generateOpponentInfoMessage(opponent);
             };
 
             btnFight.Clicked += (o, e) =>
             {
                 //FIGHT!
                 //call methods in Duel
-                //lblMessage.Text = Program.Fight(ref player, ref opponent);
-                if (Program.Fight(player, opponent))
+                if (Duel.Fight(player, opponent))
                     lblMessage.Text = "You won!";
                 else
                     lblMessage.Text = "Well now... You're dead.";
@@ -129,7 +126,7 @@ namespace WesternDuelApp
             btnWalk.Clicked += (o, e) =>
             {
                 //call methods in Duel
-                lblMessage.Text = Program.generateWalkMessage(opponent.Allegiance);
+                lblMessage.Text = Duel.generateWalkMessage(opponent.Allegiance);
 
                 if (opponent.Allegiance)//with you
                 {
@@ -152,7 +149,7 @@ namespace WesternDuelApp
             btnPlayer.Clicked += (o, e) =>
             {
                 //change text in lblMessage
-                lblMessage.Text = Program.generatePlayerInfoMessage(player);
+                lblMessage.Text = Duel.generatePlayerInfoMessage(player);
             };
 
             btnOkay.Clicked += (o, e) =>
@@ -168,15 +165,15 @@ namespace WesternDuelApp
                     btnNewGame.IsVisible = true;
                 }
 
-                btnOkay.IsVisible = false;
-                
+                btnOkay.IsVisible = false; 
             };
 
             btnNewGame.Clicked += (o, e) =>
             {
                 player = new Player();
                 opponent = new Opponent(player.Level, player.Side);
-                lblMessage.Text = Program.generateNewTownMessage(opponent.Type);
+
+                lblMessage.Text = Duel.generateNewTownMessage(opponent.Type);
                 btnOpInfo.IsVisible = true;
                 btnFight.IsVisible = true;
                 btnWalk.IsVisible = true;

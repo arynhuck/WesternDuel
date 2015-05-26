@@ -8,3 +8,5 @@ C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\Wester
 C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\obj\Debug\StartPage.xaml.g.cs
 C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\obj\Debug\WesternDuelApp.dll
 C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\obj\Debug\WesternDuelApp.pdb
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\obj\Debug\WesternDuelApp.Properties.Resources.resources
+C:\Users\ahuck\Documents\GitHub\WesternDuel\WesternDuelApp\WesternDuelApp\WesternDuelApp\obj\Debug\WesternDuelApp.csproj.GenerateResource.Cache

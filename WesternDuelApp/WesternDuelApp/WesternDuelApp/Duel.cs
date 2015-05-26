@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WesternDuelApp
 {
-    class Program
+    class Duel
     {
         //private string message;
 
@@ -16,18 +16,21 @@ namespace WesternDuelApp
         //    set { message = value; }
         //}
 
+        //Public methods
+
         public static string generateNewTownMessage(string opType)
         {
             string message = "";
+
             message += "\nEntering town...";
             message += "\n" + opType + " has stopped you";
+
             return message;
         }
 
         public static string generateOpponentInfoMessage(Opponent op)
         {
-            string message = "";
-            message = "They are a level " + op.Level + " " + op.Type + ".\n" + op.Health + " health.~~\n";
+            string message = "They are a level " + op.Level + " " + op.Type + ".\n" + op.Health + " health.~~\n";
 
             if (op.Allegiance)//true, they're with you.
                 message += "They wave in a friendly manner, they will not attack... unless you do...";
@@ -37,13 +40,8 @@ namespace WesternDuelApp
             return message;
         }
 
-        //returns the text to display in lblMessage as well
-        //TODO:
         public static bool Fight(Player player, Opponent opponent)
         {
-            //string message = "working";
-           // bool playerAlive = true;
-          //  bool opponentAlive = true;
             Random plRnd = new Random();
             Random opRnd = new Random();
             int plDamage;
@@ -53,52 +51,52 @@ namespace WesternDuelApp
             {
                 plDamage = plRnd.Next(player.LowDamage, player.HighDamage);
                 opponent.Health -= plDamage;
-               // message += "\n" + opponent.Type + " took " + plDamage + " damage!";
+              
                 if (opponent.Health <= 0)
                 {
                     //DEAD
                     opponent.Alive = false;
-                  
-                   // message += "\nOpponent " + opponent.Type + " killed!";
-                    //message += "\nYou won!";
-
-                      if (opponent.Allegiance == true)//same side as player
-                        {
-                            if (player.Side == true)//good player killed good guy
-                                player.GoodGuysKilled += 1;
-                            else //bad player killed bad guy
-                                player.BadGuysKilled += 1;
-                        }
-                      else if (opponent.Allegiance == false)//opposite side as player
-                      {
-                          if (player.Side == true)//good player killed bad guy
-                              player.BadGuysKilled += 1;
-                          else //bad player killed good guy
-                              player.GoodGuysKilled += 1;
-                      }
-
+                    OpponentIsDead(player, opponent);
+                     
                     //player is still alive so we need to update sides, heal, and level-up
                     player.ChangeSide(); //update sides
                     player.Heal(); //need that full health if you want any hope of continuing.
                     player.LevelUp();//sometimes you level up!
-
                 }
                 else
                 {
                     opDamage = opRnd.Next(opponent.LowDamage, opponent.HighDamage);
                     player.Health -= opDamage;
-                    //message += "\nPLAYER took " + opDamage + " damage!";
                 }
                 if (player.Health <= 0)
                 {
                     //DEAD
                     player.Alive = false;
-                    //message += "\nPLAYER killed!";
                 }
             }
 
             return player.Alive;
         }
+
+        private static void OpponentIsDead(Player player, Opponent opponent)
+        {
+            if (opponent.Allegiance == true)//same side as player
+            {
+                if (player.Side == true)//good player killed good guy
+                    player.GoodGuysKilled += 1;
+                else //bad player killed bad guy
+                    player.BadGuysKilled += 1;
+            }
+            else if (opponent.Allegiance == false)//opposite side as player
+            {
+                if (player.Side == true)//good player killed bad guy
+                    player.BadGuysKilled += 1;
+                else //bad player killed good guy
+                    player.GoodGuysKilled += 1;
+            }
+        }
+
+
 
         public static string generateWalkMessage(bool opAllegiance)
         {
@@ -119,19 +117,11 @@ namespace WesternDuelApp
         public static string generatePlayerInfoMessage(Player player)
         {
             string message = "";
+
             message = "Level: " + player.Level + "\nHealth: " + player.Health + "\nDamage range: " + player.LowDamage + "-" + player.HighDamage + "\n";
             message += "Side: " + player.Side + "\nGood guys killed: " + player.GoodGuysKilled + "\nBad guys killed: " + player.BadGuysKilled;
+
             return message;
         }
-
-
-
-
-
-
-
-
-
-
     }
 }
