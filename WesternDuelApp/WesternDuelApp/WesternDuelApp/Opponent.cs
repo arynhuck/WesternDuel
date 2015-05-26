@@ -67,10 +67,10 @@ namespace WesternDuelApp
         {
             this._level = playerlvl + GetLevelDifference(playerlvl);
             this._type = GenerateType();
-            this._health = 20 + (this._level * 2);
-            this._lowDamage = 1 + (this._level / 3);
-            this._highDamage = 3 + (this._level / 3);
-            this._allegiance = FindAllegiance(this._type, playerSide);
+            this._health = 20 + (_level * 2);
+            this._lowDamage = 1 + (_level / 3);
+            this._highDamage = 3 + (_level / 3);
+            this._allegiance = FindAllegiance(playerSide);
             this._isAlive = true;
             this._side = Side;
         }
