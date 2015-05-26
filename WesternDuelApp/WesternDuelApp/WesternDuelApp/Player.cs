@@ -91,15 +91,10 @@ namespace WesternDuelApp
 
         public void LevelUp()
         {
-          //  int victims = GoodGuysKilled + BadGuysKilled;
-
-           // if ((victims % 5) == 0)
-           // {
-                Level += 1;
-                Health = 20 + (Level * 2);
-                LowDamage = 1 + (Level / 3);
-                HighDamage = 3 + (Level / 3);
-            //}
+            Level += 1;
+            Health = 20 + (Level * 2);
+            LowDamage = 1 + (Level / 3);
+            HighDamage = 3 + (Level / 3);
         }
 
         public void Heal()

@@ -31,8 +31,6 @@ namespace WesternDuelApp
 
             };
 
-
-
             Content = new StackLayout
             {
                 Children = { lblMessage, picOpponent }

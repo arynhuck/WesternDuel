@@ -20,19 +20,15 @@ namespace WesternDuelApp
             player = new Player();
 
             Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 0);
-            Title = "DUEL";
-
-            //format of absLayout, might get rid of...
-            var absLayout = new AbsoluteLayout
-            {
-                BackgroundColor = Color.Black,
-            };
+            Title = "WESTERN DUEL";
 
             //format of lblMessage
             var lblMessage = new Label
             {
                 Text = "Welcome to Duel. Here you will fight to the death.",
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                BackgroundColor = Color.Black,
+                TextColor = Color.Silver,
                 HeightRequest = 200,
                 VerticalOptions = LayoutOptions.End
             };
@@ -103,9 +99,6 @@ namespace WesternDuelApp
 
             btnOpInfo.Clicked += (o, e) =>
             {
-                //change message text
-                //lblMessage.Text = Duel.GenerateOpponentInfoMessage(opponent);
-
                 //Brings up Opponent Info Page
                 Navigation.PushAsync(new OpponentInfoPage(opponent));
 
@@ -148,9 +141,6 @@ namespace WesternDuelApp
 
             btnPlayer.Clicked += (o, e) =>
             {
-                //change text in lblMessage
-                //lblMessage.Text = Duel.GeneratePlayerInfoMessage(player);
-            
                 //display PlayerInfoPage
                 Navigation.PushAsync(new PlayerInfoPage(player));
             };
@@ -184,14 +174,10 @@ namespace WesternDuelApp
                 btnNewGame.IsVisible = false;
             };
 
-
-            absLayout.Children.Add(lblMessage);
-
             Content = new StackLayout
             {
-                Children = { absLayout, btnNewGame, btnContinue, btnFight, btnWalk, btnOpInfo, btnPlayer, btnOkay }
+                Children = { lblMessage, btnNewGame, btnContinue, btnFight, btnWalk, btnOpInfo, btnPlayer, btnOkay }
             };
-
         }
     }
 }

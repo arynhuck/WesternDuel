@@ -17,7 +17,7 @@ namespace WesternDuelApp
         private bool _allegiance; //with/against the player (meaning on/or not on the same side)
                                   //true=on same side, false=on opposite sides
         private bool _isAlive; //true=alive, false=dead
-       // private bool _side; //true=good, false=bad
+        private bool _side; //true=good, false=bad
 
         //Properties
         public int Level
@@ -57,18 +57,10 @@ namespace WesternDuelApp
             set { _isAlive = value; }
         }
 
-        //public bool Side
-        //{
-        //    get { return _side; }
-        //    set
-        //    {
-        //        //The type determines the side
-        //        if (_type.Equals("SHERIF") || _type.Equals("VILLAGER"))
-        //            _side = true;
-        //        else if (_type.Equals("BANDIT") || _type.Equals("OUTLAW"))
-        //            _side = false;
-        //    }
-        //}
+        public bool Side
+        {
+            get { return _side; }
+        }
 
         //Constructor
         public Opponent(int playerlvl, bool playerSide) //good = true, bad = false
@@ -80,7 +72,7 @@ namespace WesternDuelApp
             this._highDamage = 3 + (this._level / 3);
             this._allegiance = FindAllegiance(this._type, playerSide);
             this._isAlive = true;
-            //this._side = Side;
+            this._side = Side;
         }
 
         //Private methods
@@ -115,18 +107,23 @@ namespace WesternDuelApp
             {
                 case (int)OpponentTypes.Sherif:
                     thetype = "SHERIF";
+                    _side = true;
                     break;
                 case (int)OpponentTypes.Bandit:
                     thetype = "BANDIT";
+                    _side = false;
                     break;
                 case (int)OpponentTypes.Villager:
                     thetype = "VILLAGER";
+                    _side = true;
                     break;
                 case (int)OpponentTypes.Outlaw:
                     thetype = "OUTLAW";
+                    _side = false;
                     break;
                 default:
                     thetype = "CLONE";
+                    _side = false;
                     break;
             }
 
@@ -138,22 +135,14 @@ namespace WesternDuelApp
             Sherif = 1, Bandit, Villager, Outlaw
         }
 
-        private bool FindAllegiance(string opType, bool playerSide)
+        private bool FindAllegiance(bool playerSide)
         {
-            if ((opType =="SHERIF") || (opType =="VILLAGER"))
-            {
-                if (playerSide == false)
-                    return false;
-                else
-                    return true;
-            }
-            else
-            {
-                if (playerSide == false)
-                    return true;
-                else
-                    return false;
-            }
+            if (_side == true && playerSide == true)//opponent is good and player is good
+                return true;
+            else if (_side == false && playerSide == false) //opponent is bad and player is bad
+                return true;
+            else //they are not on the same side
+                return false;
         }
     }
 }

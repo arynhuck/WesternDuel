@@ -8,14 +8,6 @@ namespace WesternDuelApp
 {
     class Duel
     {
-        //private string message;
-
-        //public string Message
-        //{ 
-        //    get { return message; }
-        //    set { message = value; }
-        //}
-
         //Private methods
 
         private static void OpponentIsDead(Player player, Opponent opponent)
@@ -35,10 +27,9 @@ namespace WesternDuelApp
                     player.GoodGuysKilled += 1;
             }
 
-            //player is still alive so we need to update sides, heal, and level-up
+            //player is still alive so we need to update sides and heal
             player.ChangeSide(); //update sides
             player.Heal(); //need that full health if you want any hope of continuing.
-          //  player.LevelUp();//sometimes you level up!
         }
 
         private static string GenerateLevelUpMessage(Player player)
@@ -114,6 +105,7 @@ namespace WesternDuelApp
             string message = "";//"They are a level " + op.Level + " " + op.Type + ".\n" + op.Health + " health.\n";
 
             message = "Level " + op.Level + " " + op.Type + "\nHealth: " + op.Health;
+            message += "\n" + op.Side;
 
             if (op.Allegiance)//true, they're with you.
                 message += "\n\nThey wave in a friendly manner, they will not attack... unless you do...";
