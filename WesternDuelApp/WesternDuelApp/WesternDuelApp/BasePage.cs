@@ -54,7 +54,6 @@ namespace WesternDuelApp
                 IsVisible = false
             };
 
-
             //format of btnWalk
             var btnWalk = new Button
             {

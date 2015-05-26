@@ -105,7 +105,6 @@ namespace WesternDuelApp
             string message = "";//"They are a level " + op.Level + " " + op.Type + ".\n" + op.Health + " health.\n";
 
             message = "Level " + op.Level + " " + op.Type + "\nHealth: " + op.Health;
-            message += "\n" + op.Side;
 
             if (op.Allegiance)//true, they're with you.
                 message += "\n\nThey wave in a friendly manner, they will not attack... unless you do...";
