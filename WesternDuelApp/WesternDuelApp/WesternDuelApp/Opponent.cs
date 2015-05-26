@@ -14,8 +14,9 @@ namespace WesternDuelApp
         private int _health;
         private int _lowDamage;
         private int _highDamage;
-        private bool _allegiance; //with you, or against you.
-        private bool _alive; //true=alive, false=dead
+        private bool _allegiance; //with/against the player (meaning on/or not on the same side)
+                                  //true=on same side, false=on opposite sides
+        private bool _isAlive; //true=alive, false=dead
        // private bool _side; //true=good, false=bad
 
         //Properties
@@ -50,10 +51,10 @@ namespace WesternDuelApp
             get { return _allegiance; }
         }
 
-        public bool Alive
+        public bool IsAlive
         {
-            get { return _alive; }
-            set { _alive = value; }
+            get { return _isAlive; }
+            set { _isAlive = value; }
         }
 
         //public bool Side
@@ -78,7 +79,7 @@ namespace WesternDuelApp
             this._lowDamage = 1 + (this._level / 3);
             this._highDamage = 3 + (this._level / 3);
             this._allegiance = FindAllegiance(this._type, playerSide);
-            this._alive = true;
+            this._isAlive = true;
             //this._side = Side;
         }
 

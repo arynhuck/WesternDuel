@@ -16,7 +16,7 @@ namespace WesternDuelApp
         private int _goodGuysKilled;
         private int _badGuysKilled;
         private bool _side; //true = good, false = bad
-        private bool _alive; //true= alive, false = dead
+        private bool _isAlive; //true= alive, false = dead
 
         //Properties:
         public int Level
@@ -61,10 +61,10 @@ namespace WesternDuelApp
             set { _side = value; }
         }
 
-        public bool Alive
+        public bool IsAlive
         {
-            get { return _alive; }
-            set { _alive = value; }
+            get { return _isAlive; }
+            set { _isAlive = value; }
         }
 
         //constructor
@@ -77,7 +77,7 @@ namespace WesternDuelApp
             this._goodGuysKilled = 0;
             this._badGuysKilled = 0;
             this._side = true;
-            this._alive = true;
+            this._isAlive = true;
         }
 
         //Public methods
@@ -91,15 +91,15 @@ namespace WesternDuelApp
 
         public void LevelUp()
         {
-            int victims = GoodGuysKilled + BadGuysKilled;
+          //  int victims = GoodGuysKilled + BadGuysKilled;
 
-            if ((victims % 5) == 0)
-            {
+           // if ((victims % 5) == 0)
+           // {
                 Level += 1;
                 Health = 20 + (Level * 2);
                 LowDamage = 1 + (Level / 3);
                 HighDamage = 3 + (Level / 3);
-            }
+            //}
         }
 
         public void Heal()

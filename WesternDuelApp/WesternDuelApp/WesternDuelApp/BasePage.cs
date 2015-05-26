@@ -114,11 +114,7 @@ namespace WesternDuelApp
             btnFight.Clicked += (o, e) =>
             {
                 //FIGHT!
-                //call methods in Duel
-                if (Duel.Fight(player, opponent))
-                    lblMessage.Text = "You won!";
-                else
-                    lblMessage.Text = "Well now... You're dead.";
+                lblMessage.Text = Duel.Fight(player, opponent);
                     
                 btnOkay.IsVisible = true;
                 btnOpInfo.IsVisible = false;
@@ -161,7 +157,7 @@ namespace WesternDuelApp
 
             btnOkay.Clicked += (o, e) =>
             {
-                if (player.Alive)
+                if (player.IsAlive)
                 {
                     btnContinue.IsVisible = true;
                     lblMessage.Text = "You wander off...";

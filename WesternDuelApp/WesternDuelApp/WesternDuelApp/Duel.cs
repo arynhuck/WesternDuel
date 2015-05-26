@@ -38,17 +38,73 @@ namespace WesternDuelApp
             //player is still alive so we need to update sides, heal, and level-up
             player.ChangeSide(); //update sides
             player.Heal(); //need that full health if you want any hope of continuing.
-            player.LevelUp();//sometimes you level up!
+          //  player.LevelUp();//sometimes you level up!
+        }
+
+        private static string GenerateLevelUpMessage(Player player)
+        {
+            string message = "";
+
+            message += "YOU HAVE LEVELED UP! REJOICE! \nLevel: " + player.Level + "\nHealth: " + 
+                        player.Health + "\nDamage range: " + player.LowDamage + "-" + player.HighDamage;
+
+            return message;
         }
 
         //Public methods
+
+        public static string Fight(Player player, Opponent opponent)
+        {
+            Random plRnd = new Random();
+            Random opRnd = new Random();
+            int plDamage;
+            int opDamage;
+            int victims = 0;
+            string message = "";
+
+            while (player.IsAlive && opponent.IsAlive)
+            {
+                plDamage = plRnd.Next(player.LowDamage, player.HighDamage);
+                opponent.Health -= plDamage;
+
+                if (opponent.Health <= 0)
+                {
+                    //DEAD
+                    opponent.IsAlive = false;
+                    OpponentIsDead(player, opponent);
+                    victims = player.GoodGuysKilled + player.BadGuysKilled;
+                    message = "You won!";
+
+                    //Check to see if player levels up!
+                    if ((victims % 5)==0)
+                    {
+                        //LEVEL UP!
+                        player.LevelUp();
+                        message += "\n\n" + GenerateLevelUpMessage(player);
+                    }
+                }
+                else
+                {
+                    opDamage = opRnd.Next(opponent.LowDamage, opponent.HighDamage);
+                    player.Health -= opDamage;
+                }
+                if (player.Health <= 0)
+                {
+                    //DEAD
+                    player.IsAlive = false;
+                    message = "Well now... You're dead.";
+                }
+            }
+
+            return message;
+        }
 
         public static string GenerateNewTownMessage(string opType)
         {
             string message = "";
 
-            message += "Entering town...";
-            message += "\n" + opType + " has stopped you";
+            message += "Entering town..."
+                    + "\n" + opType + " has stopped you";
 
             return message;
         }
@@ -65,39 +121,6 @@ namespace WesternDuelApp
                 message += "\n\nThey glare at you and reach for their gun...";
 
             return message;
-        }
-
-        public static bool Fight(Player player, Opponent opponent)
-        {
-            Random plRnd = new Random();
-            Random opRnd = new Random();
-            int plDamage;
-            int opDamage;
-
-            while (player.Alive && opponent.Alive)
-            {
-                plDamage = plRnd.Next(player.LowDamage, player.HighDamage);
-                opponent.Health -= plDamage;
-              
-                if (opponent.Health <= 0)
-                {
-                    //DEAD
-                    opponent.Alive = false;
-                    OpponentIsDead(player, opponent);
-                }
-                else
-                {
-                    opDamage = opRnd.Next(opponent.LowDamage, opponent.HighDamage);
-                    player.Health -= opDamage;
-                }
-                if (player.Health <= 0)
-                {
-                    //DEAD
-                    player.Alive = false;
-                }
-            }
-
-            return player.Alive;
         }
 
         public static string GenerateWalkMessage(bool opAllegiance)
@@ -121,7 +144,13 @@ namespace WesternDuelApp
             string message = "";
 
             message = "Level: " + player.Level + "\nHealth: " + player.Health + "\nDamage range: " + player.LowDamage + "-" + player.HighDamage + "\n";
-            message += "Side: " + player.Side + "\nGood guys killed: " + player.GoodGuysKilled + "\nBad guys killed: " + player.BadGuysKilled;
+
+            if (player.Side)
+                message += "Side: Good";
+            else
+                message += "Side: Bad";
+
+            message += "\nGood guys killed: " + player.GoodGuysKilled + "\nBad guys killed: " + player.BadGuysKilled;
 
             return message;
         }
