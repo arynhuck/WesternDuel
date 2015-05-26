@@ -6,42 +6,93 @@ using System.Threading.Tasks;
 
 namespace WesternDuelApp
 {
-    class Opponent
+    public class Opponent
     {
-       private int level;
-        private string type;
-        private int health;
-        private int lowDamage;
-        private int highDamage;
-        private bool allegiance; //with you, or against you.
-        private bool alive; //true=alive, false=dead
+        //Member variables
+        private int _level;
+        private string _type;
+        private int _health;
+        private int _lowDamage;
+        private int _highDamage;
+        private bool _allegiance; //with/against the player (meaning on/or not on the same side)
+                                  //true=on same side, false=on opposite sides
+        private bool _isAlive; //true=alive, false=dead
+        private bool _side; //true=good, false=bad
 
-        public Opponent(int playerlvl, bool playerSide) //good = true, bad = false
+        //Properties
+        public int Level
         {
-            this.level = playerlvl + LevelDiff(playerlvl);
-            this.type = GenerateType();
-            this.health = 20 + (this.level * 2);
-            this.lowDamage = 1 + (this.level / 3);
-            this.highDamage = 3 + (this.level / 3);
-            this.allegiance = FindAllegiance(this.type, playerSide);
-            this.alive = true;
+            get { return _level; }
         }
 
-        private int LevelDiff(int playerlvl)
+        public string Type
+        {
+            get { return _type; }
+        }
+
+        public int Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
+
+        public int LowDamage
+        {
+            get { return _lowDamage; }
+        }
+
+        public int HighDamage
+        {
+            get { return _highDamage; }
+        }
+
+        public bool Allegiance
+        {
+            get { return _allegiance; }
+        }
+
+        public bool IsAlive
+        {
+            get { return _isAlive; }
+            set { _isAlive = value; }
+        }
+
+        public bool Side
+        {
+            get { return _side; }
+        }
+
+        //Constructor
+        public Opponent(int playerlvl, bool playerSide) //good = true, bad = false
+        {
+            this._level = playerlvl + GetLevelDifference(playerlvl);
+            this._type = GenerateType();
+            this._health = 20 + (_level * 2);
+            this._lowDamage = 1 + (_level / 3);
+            this._highDamage = 3 + (_level / 3);
+            this._allegiance = FindAllegiance(playerSide);
+            this._isAlive = true;
+            this._side = Side;
+        }
+
+        //Private methods
+        private int GetLevelDifference(int playerlvl)
         {
             Random rnd = new Random();
-            int diff = 0;
+            int difference = 0;
+
             if (playerlvl == 1)
-                diff = 0;
+                difference = 0;
             else if (playerlvl == 2)
-                diff = rnd.Next(-1, 1);
+                difference = rnd.Next(-1, 1);
             else if (playerlvl <= 3)
-                diff = rnd.Next(-2, 2);
+                difference = rnd.Next(-2, 2);
             else if (playerlvl <= 7)
-                diff = rnd.Next(-3, 3);
+                difference = rnd.Next(-3, 3);
             else
-                diff = rnd.Next(-4, 3);
-            return diff;
+                difference = rnd.Next(-4, 3);
+
+            return difference;
         }
 
         private string GenerateType()
@@ -54,79 +105,44 @@ namespace WesternDuelApp
 
             switch(numType)
             {
-                case 1:
+                case (int)OpponentTypes.Sherif:
                     thetype = "SHERIF";
+                    _side = true;
                     break;
-                case 2:
+                case (int)OpponentTypes.Bandit:
                     thetype = "BANDIT";
+                    _side = false;
                     break;
-                case 3:
+                case (int)OpponentTypes.Villager:
                     thetype = "VILLAGER";
+                    _side = true;
                     break;
-                case 4:
+                case (int)OpponentTypes.Outlaw:
                     thetype = "OUTLAW";
+                    _side = false;
                     break;
                 default:
                     thetype = "CLONE";
+                    _side = false;
                     break;
             }
+
             return thetype;
         }
 
-        private bool FindAllegiance(string opType, bool playerSide)
+        private enum OpponentTypes
         {
-            if ((opType =="SHERIF") || (opType =="VILLAGER"))
-            {
-                if (playerSide == false)
-                    return false;
-                else
-                    return true;
-            }
-            else
-            {
-                if (playerSide == false)
-                    return true;
-                else
-                    return false;
-            }
+            Sherif = 1, Bandit, Villager, Outlaw
         }
 
-        public int Level
+        private bool FindAllegiance(bool playerSide)
         {
-            get { return level; }
+            if (_side == true && playerSide == true)//opponent is good and player is good
+                return true;
+            else if (_side == false && playerSide == false) //opponent is bad and player is bad
+                return true;
+            else //they are not on the same side
+                return false;
         }
-
-        public string Type
-        {
-            get { return type;}
-        }
-
-        public int Health
-        {
-            get { return health; }
-            set { health = value; }
-        }
-
-        public int LowDamage
-        {
-            get { return lowDamage; }
-        }
-
-        public int HighDamage
-        {
-            get { return highDamage; }
-        }
-
-        public bool Allegiance
-        {
-            get { return allegiance; }
-        }
-
-        public bool Alive
-        {
-            get { return alive; }
-            set { alive = value; }
-        }
-
     }
 }

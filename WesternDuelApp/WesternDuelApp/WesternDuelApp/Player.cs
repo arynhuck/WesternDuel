@@ -6,30 +6,81 @@ using System.Threading.Tasks;
 
 namespace WesternDuelApp
 {
-    class Player
+    public class Player
     {
-        private int level;
-        private int health;
-        private int lowDamage;
-        private int highDamage;
-        private int goodGuysKilled;
-        private int badGuysKilled;
-        private bool side; //true = good, false = bad
-        private bool alive; //true= alive, false = dead
+        //Member variables
+        private int _level;
+        private int _health;
+        private int _lowDamage;
+        private int _highDamage;
+        private int _goodGuysKilled;
+        private int _badGuysKilled;
+        private bool _side; //true = good, false = bad
+        private bool _isAlive; //true= alive, false = dead
+
+        //Properties:
+        public int Level
+        {
+            get { return _level; }
+            set { _level = value; }
+        }
+
+        public int Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
+
+        public int LowDamage
+        {
+            get { return _lowDamage; }
+            set { _lowDamage = 1 + (this.Level / 3); }
+        }
+
+        public int HighDamage
+        {
+            get { return _highDamage; }
+            set { _highDamage = 3 + (this._level / 3); }
+        }
+
+        public int GoodGuysKilled
+        {
+            get { return _goodGuysKilled; }
+            set { _goodGuysKilled = value; }
+        }
+
+        public int BadGuysKilled
+        {
+            get { return _badGuysKilled; }
+            set { _badGuysKilled = value; }
+        }
+
+        public bool Side
+        {
+            get { return _side; }
+            set { _side = value; }
+        }
+
+        public bool IsAlive
+        {
+            get { return _isAlive; }
+            set { _isAlive = value; }
+        }
 
         //constructor
         public Player()
         {
-            this.level = 1;
-            this.health = 20 + (this.level * 2);
-            this.lowDamage = 1 + (this.level / 3);
-            this.highDamage = 3 + (this.level / 3);
-            this.goodGuysKilled = 0;
-            this.badGuysKilled = 0;
-            this.side = true;
-            this.alive = true;
+            this._level = 1;
+            this._health = 20 + (this._level * 2);
+            this._lowDamage = 1 + (this._level / 3);
+            this._highDamage = 3 + (this._level / 3);
+            this._goodGuysKilled = 0;
+            this._badGuysKilled = 0;
+            this._side = true;
+            this._isAlive = true;
         }
 
+        //Public methods
         public void ChangeSide()
         {
             if (GoodGuysKilled >= BadGuysKilled)
@@ -40,17 +91,10 @@ namespace WesternDuelApp
 
         public void LevelUp()
         {
-            int victims = GoodGuysKilled + BadGuysKilled;
-
-            if ((victims % 5) == 0)
-            {
-                Level += 1;
-                Health = 20 + (Level * 2);
-                LowDamage = 1 + (Level / 3);
-                HighDamage = 3 + (Level / 3);
-               // Console.WriteLine("YOU HAVE LEVELED UP! REJOICE!");
-                //Console.Write("\nLevel: " + level + "\nHealth: " + health + "\nDamage range: " + lowDamage + "-" + highDamage + "\n");
-            }
+            Level += 1;
+            Health = 20 + (Level * 2);
+            LowDamage = 1 + (Level / 3);
+            HighDamage = 3 + (Level / 3);
         }
 
         public void Heal()
@@ -60,57 +104,7 @@ namespace WesternDuelApp
 
         public string createInfoMessage()
         {
-            return "\nLevel: " + level + "\nHealth: " + health + "\nDamage range: " + lowDamage + "-" + highDamage + "\n";
+            return "\nLevel: " + _level + "\nHealth: " + _health + "\nDamage range: " + _lowDamage + "-" + _highDamage + "\n";
         }
-
-        //member variables/properties:
-        public int Level
-        {
-            get { return level; }
-            set { level = value; }
-        }
-        
-        public int Health
-        {
-            get { return health; }
-            set { health = value; }
-        }
-
-        public int LowDamage
-        {
-            get { return lowDamage; }
-            set { lowDamage = 1 + (this.Level / 3); }
-        }
-
-        public int HighDamage
-        {
-            get { return highDamage; }
-            set { highDamage = 3 + (this.level / 3); }
-        }
-
-        public int GoodGuysKilled
-        {
-            get { return goodGuysKilled; }
-            set { goodGuysKilled = value; }
-        }
-
-        public int BadGuysKilled
-        {
-            get { return badGuysKilled; }
-            set { badGuysKilled = value; }
-        }
-
-        public bool Side
-        {
-            get { return side; }
-            set { side = value; }
-        }
-
-        public bool Alive
-        {
-            get { return alive; }
-            set { alive = value; }
-        }
-
     }
 }
